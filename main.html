@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simulasi Kostate</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+    <div id="app">
+        <v-form>
+            <v-container>
+                <v-layout row wrap justify-center>
+                    <v-flex xs6>
+                        <v-text-field
+                            label="Harga"
+                            prefix="Rp"
+                            suffix="/bulan"
+                            v-model="harga"
+                            v-money="money"
+                        ></v-text-field>
+                        <v-text-field
+                            label="Potongan harga"
+                            prefix="Rp"
+                            suffix="/penghuni"
+                            v-model="potonganHarga"
+                            v-money="money"
+                        ></v-text-field>
+                        <v-text-field
+                            label="Jumlah Kamar"
+                            Suffix="kamar"
+                            type="number"
+                            v-model="jumlahKamar"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex xs6>
+                        {{  }}
+                    </v-flex>
+                    <v-flex xs12>
+                        <v-data-table
+                            :headers="resultHeaders"
+                            :items="kost"
+                            hide-actions
+                            class="elevation-1"
+                        >
+                            <template v-slot:items="props">
+                                <td>{{ props.item.penghuni}}</td>
+                                <td>{{ props.item.harga | toCurrency }}</td>
+                                <td>{{ props.item.penghasilan | toCurrency }}</td>
+                                <td>{{ props.item.penghasilanKonvensional | toCurrency }}</td>
+                                <td>{{ props.item.iklan | toCurrency }}</td>
+                            </template>
+                        </v-data-table>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <script src="money.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
