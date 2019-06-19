@@ -16,15 +16,17 @@ Vue.filter('toCurrency', function (val) {
 new Vue({
     el: '#app',
     data: () => ({
-        harga: 500000,          // per bulan
-        potonganHarga: 5000,    // per orang
-        jumlahKamar: 5,
         money: {
             decimal: ',',
             thousands: '.',
             precision: 0
         },
-        resultHeaders: [
+        input1: {
+            harga: 500000,          // per bulan
+            maxPotonganHarga: 50000,    // per orang
+            jumlahKamar: 10
+        },
+        headers: [
             {
                 text: 'Penghuni (Orang)',
                 align: 'left',
@@ -38,10 +40,10 @@ new Vue({
         ],
     }),
     computed: {
-        kost: function() {
-            var harga = toDecimal(this.harga)
-            var potonganHarga = toDecimal(this.potonganHarga)
-            var jumlahKamar = this.jumlahKamar
+        output1: function() {
+            var harga = toDecimal(this.input1.harga)
+            var jumlahKamar = this.input1.jumlahKamar
+            var potonganHarga = toDecimal(this.input1.maxPotonganHarga)/jumlahKamar
             var dataPenghuni = []
             for(var i = 0; i <= jumlahKamar; i++) {
                 var hargaApps = harga-(i*potonganHarga)

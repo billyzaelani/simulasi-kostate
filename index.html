@@ -10,46 +10,60 @@
     <div id="app">
         <v-form>
             <v-container>
-                <v-layout row wrap justify-center>
-                    <v-flex xs6>
-                        <v-text-field
-                            label="Harga"
-                            prefix="Rp"
-                            suffix="/bulan"
-                            v-model="harga"
-                            v-money="money"
-                        ></v-text-field>
-                        <v-text-field
-                            label="Potongan harga"
-                            prefix="Rp"
-                            suffix="/penghuni"
-                            v-model="potonganHarga"
-                            v-money="money"
-                        ></v-text-field>
-                        <v-text-field
-                            label="Jumlah Kamar"
-                            Suffix="kamar"
-                            type="number"
-                            v-model="jumlahKamar"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12>
-                        <v-data-table
-                            :headers="resultHeaders"
-                            :items="kost"
-                            hide-actions
-                            class="elevation-1"
-                        >
-                            <template v-slot:items="props">
-                                <td>{{ props.item.penghuni}}</td>
-                                <td>{{ props.item.harga | toCurrency }}</td>
-                                <td>{{ props.item.penghasilan | toCurrency }}</td>
-                                <td>{{ props.item.penghasilanKonvensional | toCurrency }}</td>
-                                <td>{{ props.item.iklan | toCurrency }}</td>
-                            </template>
-                        </v-data-table>
-                    </v-flex>
-                </v-layout>
+                <v-tabs
+                    dark
+                    color="teal accent-4"
+                    slider-color="amber accent-4"
+                >
+                    <v-tab href="#iteration-1">Iterasi 1</v-tab>
+                    <v-tab href="#iteration-2">Iterasi 2</v-tab>
+
+                    <v-tab-item :value="'iteration-1'">
+                        <v-layout row wrap justify-center>
+                            <v-flex xs6>
+                                <v-text-field
+                                    label="Harga"
+                                    prefix="Rp"
+                                    suffix="/bulan"
+                                    v-model="input1.harga"
+                                    v-money="money"
+                                ></v-text-field>
+                                <v-text-field
+                                    label="Maximum potongan harga"
+                                    prefix="Rp"
+                                    suffix="/penghuni"
+                                    v-model="input1.maxPotonganHarga"
+                                    v-money="money"
+                                ></v-text-field>
+                                <v-text-field
+                                    label="Jumlah Kamar"
+                                    Suffix="kamar"
+                                    type="number"
+                                    v-model="input1.jumlahKamar"
+                                ></v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                                <v-data-table
+                                    :headers="headers"
+                                    :items="output1"
+                                    hide-actions
+                                    class="elevation-1"
+                                >
+                                    <template v-slot:items="props">
+                                        <td>{{ props.item.penghuni}}</td>
+                                        <td>{{ props.item.harga | toCurrency }}</td>
+                                        <td>{{ props.item.penghasilan | toCurrency }}</td>
+                                        <td>{{ props.item.penghasilanKonvensional | toCurrency }}</td>
+                                        <td>{{ props.item.iklan | toCurrency }}</td>
+                                    </template>
+                                </v-data-table>
+                            </v-flex>
+                        </v-layout>
+                    </v-tab-item>
+                    <v-tab-item :value="'iteration-2'">
+                        <v-layout row wrap justify-center></v-layout>
+                    </v-tab-item>
+                </v-tabs>
             </v-container>
         </v-form>
     </div>
