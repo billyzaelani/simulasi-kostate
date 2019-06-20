@@ -41,6 +41,13 @@
                                     type="number"
                                     v-model="input1.jumlahKamar"
                                 ></v-text-field>
+                                <v-text-field
+                                    label="Jumlah Penghuni"
+                                    Suffix="orang"
+                                    type="number"
+                                    v-model="input1.jumlahPenghuni"
+                                    :max="input1.jumlahKamar"
+                                ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
                                 <v-data-table
