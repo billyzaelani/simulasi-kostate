@@ -66,5 +66,13 @@ new Vue({
             }
             return dataPenghuni
         }
+    },
+    methods: {
+        decrement() {
+            this.input1.jumlahPenghuni--
+        },
+        increment() {
+            this.input1.jumlahPenghuni++
+        }
     }
 })

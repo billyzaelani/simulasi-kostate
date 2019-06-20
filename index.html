@@ -20,7 +20,7 @@
 
                     <v-tab-item :value="'iteration-1'">
                         <v-layout row wrap justify-center>
-                            <v-flex xs6>
+                            <v-flex xs4 px-4>
                                 <v-text-field
                                     label="Harga"
                                     prefix="Rp"
@@ -28,6 +28,8 @@
                                     v-model="input1.harga"
                                     v-money="money"
                                 ></v-text-field>
+                            </v-flex>
+                            <v-flex xs4 px-4>
                                 <v-text-field
                                     label="Maximum potongan harga"
                                     prefix="Rp"
@@ -35,19 +37,42 @@
                                     v-model="input1.maxPotonganHarga"
                                     v-money="money"
                                 ></v-text-field>
+                            </v-flex>
+                            <v-flex xs4 px-4>
                                 <v-text-field
                                     label="Jumlah Kamar"
                                     Suffix="kamar"
                                     type="number"
                                     v-model="input1.jumlahKamar"
                                 ></v-text-field>
-                                <v-text-field
-                                    label="Jumlah Penghuni"
-                                    Suffix="orang"
-                                    type="number"
+                            </v-flex>
+                            <v-flex xs6>
+                                <v-subheader>Jumlah penghuni</v-subheader>
+                                <v-slider
                                     v-model="input1.jumlahPenghuni"
+                                    color="teal accent-4"
+                                    min="0"
                                     :max="input1.jumlahKamar"
-                                ></v-text-field>
+                                    thumb-label="always"
+                                    thumb-color="red"
+                                >
+                                    <template v-slot:prepend>
+                                        <v-icon
+                                            color="amber accent-4"
+                                            @click="decrement"
+                                        >
+                                            remove
+                                        </v-icon>
+                                    </template>
+                                    <template v-slot:append>
+                                        <v-icon
+                                            color="amber accent-4"
+                                            @click="increment"
+                                        >
+                                            add
+                                        </v-icon>
+                                    </template>
+                                </v-slider>
                             </v-flex>
                             <v-flex xs12>
                                 <v-data-table
